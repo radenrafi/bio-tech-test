@@ -1,0 +1,26 @@
+@apiUrl = http://localhost:3000/v1
+
+###
+# @name login
+POST {{apiUrl}}/auth/login
+Content-Type: application/json
+
+{
+    "username": "user2",
+    "password": "password"
+}
+
+###
+# @name getCurrentUser
+GET {{apiUrl}}/auth HTTP/1.1
+Authorization: Bearer {{login.response.body.$.data.token}}
+
+###
+# @name getPets
+GET {{apiUrl}}/pets HTTP/1.1
+Authorization: Bearer {{login.response.body.$.data.token}}
+
+###
+# @name getVehicles
+GET {{apiUrl}}/vehicles HTTP/1.1
+Authorization: Bearer {{login.response.body.$.data.token}}
